@@ -50,16 +50,7 @@ class HTTP11Response: HTTPResponse {
 	var handlers: IndexingIterator<[RequestHandler]>?
 	
     lazy var isKeepAlive: Bool = {
-        // http 1.1 is keep-alive unless otherwise noted
-        // http 1.0 is keep-alive if specifically noted
-        // check header first
-        if let connection = self.request.header(.connection) {
-            if connection.lowercased() == "keep-alive" {
-                return true
-            }
-            return false
-        }
-        return self.isHTTP11
+	return false
     }()
     
     var isHTTP11: Bool {
